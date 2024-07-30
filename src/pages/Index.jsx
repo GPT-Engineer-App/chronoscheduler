@@ -6,11 +6,46 @@ const Index = () => {
   const [selectedDuration, setSelectedDuration] = useState(null);
 
   const durations = [
-    { minutes: 30, label: "NO 30", description: "NL: Voor 30 minuten afspraak EN: For 30 minutes appointment" },
-    { minutes: 60, label: "NO 60", description: "NL: Voor 60 minuten (1u) afspraak EN: For 60 minutes (1h) appointment" },
-    { minutes: 120, label: "NO 120", description: "NL: Voor 120 minuten (2u) afspraak EN: For 120 minutes (2h) appointment" },
-    { minutes: 240, label: "NO 240", description: "NL: Voor 240 minuten (4u) afspraak EN: For 240 minutes (4h) appointment" },
-    { minutes: 480, label: "NO 480", description: "NL: Voor 480 minuten (8u) afspraak EN: For 480 minutes (8h) appointment" },
+    { 
+      minutes: 30, 
+      label: "NO 30", 
+      description: {
+        nl: "NL: Voor 30 minuten afspraak",
+        en: "EN: For 30 minutes appointment"
+      }
+    },
+    { 
+      minutes: 60, 
+      label: "NO 60", 
+      description: {
+        nl: "NL: Voor 60 minuten (1u) afspraak",
+        en: "EN: For 60 minutes (1h) appointment"
+      }
+    },
+    { 
+      minutes: 120, 
+      label: "NO 120", 
+      description: {
+        nl: "NL: Voor 120 minuten (2u) afspraak",
+        en: "EN: For 120 minutes (2h) appointment"
+      }
+    },
+    { 
+      minutes: 240, 
+      label: "NO 240", 
+      description: {
+        nl: "NL: Voor 240 minuten (4u) afspraak",
+        en: "EN: For 240 minutes (4h) appointment"
+      }
+    },
+    { 
+      minutes: 480, 
+      label: "NO 480", 
+      description: {
+        nl: "NL: Voor 480 minuten (8u) afspraak",
+        en: "EN: For 480 minutes (8h) appointment"
+      }
+    },
   ];
 
   return (
@@ -35,7 +70,10 @@ const Index = () => {
                 <Clock className="w-4 h-4 mr-2" />
                 <span>{duration.minutes} min</span>
               </div>
-              <p className="text-sm text-gray-500">{duration.description}</p>
+              <div className="text-sm text-gray-500">
+                <p>{duration.description.nl}</p>
+                <p>{duration.description.en}</p>
+              </div>
             </CardContent>
           </Card>
         ))}
