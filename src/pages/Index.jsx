@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Clock } from "lucide-react";
-
 const Index = () => {
   const [selectedDuration, setSelectedDuration] = useState(null);
 
   const durations = [
     { 
-      minutes: 30, 
       label: "NO 30", 
       description: {
         nl: "NL: Voor 30 minuten afspraak",
@@ -58,18 +55,14 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {durations.map((duration) => (
           <Card
-            key={duration.minutes}
+            key={duration.label}
             className={`cursor-pointer transition-all ${
               selectedDuration === duration ? "ring-2 ring-blue-500" : ""
             }`}
             onClick={() => setSelectedDuration(duration)}
           >
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h2 className="text-xl font-semibold mb-2">{duration.label}</h2>
-              <div className="flex items-center text-gray-600 mb-2">
-                <Clock className="w-4 h-4 mr-2" />
-                <span>{duration.minutes} min</span>
-              </div>
               <div className="text-sm text-gray-500">
                 <p>{duration.description.nl}</p>
                 <p>{duration.description.en}</p>
