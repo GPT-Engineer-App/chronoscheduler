@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Appointment Rearrange",
+  "version": "1.0",
+  "description": "Rearranges appointments in chronological order",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://noodzakelijkonline.nl/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
