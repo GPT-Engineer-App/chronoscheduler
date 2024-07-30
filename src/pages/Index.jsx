@@ -53,7 +53,7 @@ const Index = () => {
         <h1 className="text-2xl font-bold">Noodzakelijk Online (Robert Velhorst)</h1>
         <p className="text-gray-600">Appointments</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
         {durations.map((duration) => (
           <Card
             key={duration.label}
@@ -62,11 +62,11 @@ const Index = () => {
             }`}
             onClick={() => setSelectedDuration(duration)}
           >
-            <CardContent className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{duration.label}</h2>
-              <div className="text-sm text-gray-500">
-                <p>{duration.description.nl}</p>
-                <p>{duration.description.en}</p>
+            <CardContent className="p-3">
+              <h2 className="text-lg font-semibold mb-1">{duration.label}</h2>
+              <div className="text-xs text-gray-500">
+                <p className="truncate">{duration.description.nl}</p>
+                <p className="truncate">{duration.description.en}</p>
               </div>
             </CardContent>
           </Card>
