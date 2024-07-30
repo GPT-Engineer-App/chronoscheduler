@@ -5,42 +5,43 @@ const Index = () => {
 
   const durations = [
     { 
+      minutes: 30,
       label: "NO 30", 
       description: {
-        nl: "NL: Voor 30 minuten afspraak",
-        en: "EN: For 30 minutes appointment"
+        nl: "NL: 30 minuten afspraak",
+        en: "EN: 30 minutes appointment"
       }
     },
     { 
       minutes: 60, 
       label: "NO 60", 
       description: {
-        nl: "NL: Voor 60 minuten (1u) afspraak",
-        en: "EN: For 60 minutes (1h) appointment"
+        nl: "NL: 60 minuten (1u) afspraak",
+        en: "EN: 60 minutes (1h) appointment"
       }
     },
     { 
       minutes: 120, 
       label: "NO 120", 
       description: {
-        nl: "NL: Voor 120 minuten (2u) afspraak",
-        en: "EN: For 120 minutes (2h) appointment"
+        nl: "NL: 120 minuten (2u) afspraak",
+        en: "EN: 120 minutes (2h) appointment"
       }
     },
     { 
       minutes: 240, 
       label: "NO 240", 
       description: {
-        nl: "NL: Voor 240 minuten (4u) afspraak",
-        en: "EN: For 240 minutes (4h) appointment"
+        nl: "NL: 240 minuten (4u) afspraak",
+        en: "EN: 240 minutes (4h) appointment"
       }
     },
     { 
       minutes: 480, 
       label: "NO 480", 
       description: {
-        nl: "NL: Voor 480 minuten (8u) afspraak",
-        en: "EN: For 480 minutes (8h) appointment"
+        nl: "NL: 480 minuten (8u) afspraak",
+        en: "EN: 480 minutes (8h) appointment"
       }
     },
   ];
