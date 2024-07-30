@@ -1,109 +1,44 @@
-import { useState, useEffect } from "react";
-import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import AppointmentDurationSelector from "@/components/AppointmentDurationSelector";
-import TimeSlotSelector from "@/components/TimeSlotSelector";
+import { Clock } from "lucide-react";
 
 const Index = () => {
-  const [date, setDate] = useState(new Date());
   const [selectedDuration, setSelectedDuration] = useState(null);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-  const [timeSlots, setTimeSlots] = useState([]);
 
   const durations = [
-    { minutes: 30, label: "30 min" },
-    { minutes: 60, label: "1 hour" },
-    { minutes: 90, label: "1 hour 30 min" },
-    { minutes: 120, label: "2 hours" },
-    { minutes: 150, label: "2 hours 30 min" },
-    { minutes: 180, label: "3 hours" },
-    { minutes: 210, label: "3 hours 30 min" },
-    { minutes: 240, label: "4 hours" },
-    { minutes: 270, label: "4 hours 30 min" },
-    { minutes: 300, label: "5 hours" },
-    { minutes: 330, label: "5 hours 30 min" },
-    { minutes: 360, label: "6 hours" },
-    { minutes: 390, label: "6 hours 30 min" },
-    { minutes: 420, label: "7 hours" },
-    { minutes: 450, label: "7 hours 30 min" },
-    { minutes: 480, label: "8 hours" },
-  ].sort((a, b) => a.minutes - b.minutes);
-
-  useEffect(() => {
-    // Generate time slots based on the selected date
-    const slots = generateTimeSlots(date);
-    setTimeSlots(slots);
-  }, [date]);
-
-  const generateTimeSlots = (selectedDate) => {
-    // This is a placeholder function. In a real application, you would fetch
-    // available time slots from a backend API based on the selected date.
-    const slots = [];
-    for (let hour = 9; hour < 17; hour++) {
-      slots.push(`${hour.toString().padStart(2, '0')}:00`);
-      slots.push(`${hour.toString().padStart(2, '0')}:30`);
-    }
-    return slots;
-  };
-
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
-    setSelectedTimeSlot(null);
-  };
-
-  const handleDurationSelect = (duration) => {
-    setSelectedDuration(duration);
-    setSelectedTimeSlot(null);
-  };
-
-  const handleTimeSlotSelect = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
-  };
+    { minutes: 30, label: "NO 30", description: "NL: Voor 30 minuten afspraak EN: For 30 minutes appointment" },
+    { minutes: 60, label: "NO 60", description: "NL: Voor 60 minuten (1u) afspraak EN: For 60 minutes (1h) appointment" },
+    { minutes: 120, label: "NO 120", description: "NL: Voor 120 minuten (2u) afspraak EN: For 120 minutes (2h) appointment" },
+    { minutes: 240, label: "NO 240", description: "NL: Voor 240 minuten (4u) afspraak EN: For 240 minutes (4h) appointment" },
+    { minutes: 480, label: "NO 480", description: "NL: Voor 480 minuten (8u) afspraak EN: For 480 minutes (8h) appointment" },
+  ];
 
   return (
-    <div className="container mx-auto p-4 flex flex-col md:flex-row gap-8">
-      <Card className="flex-1">
-        <CardContent className="p-6">
-          <div className="flex justify-between items-center mb-4">
-            <Button variant="outline" size="icon" onClick={() => handleDateChange(new Date(date.setMonth(date.getMonth() - 1)))}>
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <h2 className="text-lg font-semibold">{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
-            <Button variant="outline" size="icon" onClick={() => handleDateChange(new Date(date.setMonth(date.getMonth() + 1)))}>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={handleDateChange}
-            className="rounded-md border"
-          />
-        </CardContent>
-      </Card>
-      
-      <div className="flex-1 space-y-6">
-        <AppointmentDurationSelector
-          durations={durations}
-          selectedDuration={selectedDuration}
-          onSelect={handleDurationSelect}
-        />
-        
-        {selectedDuration && (
-          <TimeSlotSelector
-            timeSlots={timeSlots}
-            selectedTimeSlot={selectedTimeSlot}
-            onSelect={handleTimeSlotSelect}
-          />
-        )}
-        
-        {selectedTimeSlot && (
-          <Button className="w-full">
-            Confirm Appointment
-          </Button>
-        )}
+    <div className="container mx-auto p-4">
+      <div className="text-center mb-8">
+        <img src="/placeholder.svg" alt="Noodzakelijk Online Logo" className="mx-auto w-16 h-16 mb-4" />
+        <h1 className="text-2xl font-bold">Noodzakelijk Online (Robert Velhorst)</h1>
+        <p className="text-gray-600">Appointments</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {durations.map((duration) => (
+          <Card
+            key={duration.minutes}
+            className={`cursor-pointer transition-all ${
+              selectedDuration === duration ? "ring-2 ring-blue-500" : ""
+            }`}
+            onClick={() => setSelectedDuration(duration)}
+          >
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">{duration.label}</h2>
+              <div className="flex items-center text-gray-600 mb-2">
+                <Clock className="w-4 h-4 mr-2" />
+                <span>{duration.minutes} min</span>
+              </div>
+              <p className="text-sm text-gray-500">{duration.description}</p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
